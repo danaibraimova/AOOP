@@ -67,7 +67,7 @@ namespace змейка2
             {
                 body[i].x = body[i - 1].x;
                 body[i].y = body[i - 1].y;
-            }//чтобы остальные части тела двигались за головой
+            } //чтобы остальные части тела двигались за головой
             
             Point p = body[1];
             while(p != body[body.Count - 1])
@@ -81,17 +81,12 @@ namespace змейка2
                 p.y++;
             }
 
-
-
-                head.x += dx;
+            head.x += dx;
             head.y += dy;
             Draw();
             return false; //не появляется еда
-
-            
+           
         }
-
-
         
     }
 
@@ -164,6 +159,7 @@ namespace змейка2
                 Console.WriteLine("You lost!");
                 Console.WriteLine();
                 Console.WriteLine("or something went wrong. game over anyway");
+                Console.WriteLine("pushing to git");
                 Console.ReadKey();
             }
       

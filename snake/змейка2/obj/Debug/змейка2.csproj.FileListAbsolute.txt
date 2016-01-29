@@ -4,3 +4,6 @@ E:\Дана\Учёбка\ООП\змейка2\змейка2\bin\Debug\змейк
 E:\Дана\Учёбка\ООП\змейка2\змейка2\obj\Debug\змейка2.csprojResolveAssemblyReference.cache
 E:\Дана\Учёбка\ООП\змейка2\змейка2\obj\Debug\змейка2.exe
 E:\Дана\Учёбка\ООП\змейка2\змейка2\obj\Debug\змейка2.pdb
+E:\git\snake\змейка2\bin\Debug\змейка2.exe.config
+E:\git\snake\змейка2\obj\Debug\змейка2.exe
+E:\git\snake\змейка2\obj\Debug\змейка2.pdb
