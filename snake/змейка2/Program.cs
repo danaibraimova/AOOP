@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace змейка2
 {
@@ -15,10 +17,10 @@ namespace змейка2
     {
         public int x;
         public int y;
-        public Point(int _x, int _y)
+        public Point()
         {
-            x =_x;
-            y = _y;
+          //  x =_x;
+           // y = _y;
         }
 
     }
@@ -29,7 +31,7 @@ namespace змейка2
         public Snake()
         {
             body= new List<Point>();
-            body.Add(new Point(10,10));
+            body.Add(new Point());
           
         }
 
@@ -80,7 +82,7 @@ namespace змейка2
 
     public class Food : IDrawable
     {
-        public Point pos=new Point(0,0);
+        public Point pos=new Point();
         public Food()
         {
             Draw();            
@@ -104,6 +106,11 @@ namespace змейка2
             Snake sn = new Snake();
             sn.Draw();
             Food f = new Food();
+
+            XmlSerializer xs = new XmlSerializer(typeof(Point));
+            FileStream points = new FileStream("point.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            FileStream foodLocation = new FileStream("foodLocation.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+
             try
             {
                 while (true)
@@ -130,30 +137,52 @@ namespace змейка2
 
                             case ConsoleKey.UpArrow:
                                 while (sn.Move(0, -1, f.pos)) f = new Food();
+                                xs.Serialize(points, sn.body[0]);
+                                xs.Serialize(foodLocation, f.pos);
                                 break;
 
                             case ConsoleKey.DownArrow:
                                 while (sn.Move(0, 1, f.pos)) f = new Food();
+                                xs.Serialize(points, sn.body[0]);
+                                xs.Serialize(foodLocation, f.pos);
                                 break;
 
                             case ConsoleKey.LeftArrow:
                                 while (sn.Move(-1, 0, f.pos)) f = new Food();
+                                xs.Serialize(points, sn.body[0]);
+                                xs.Serialize(foodLocation, f.pos);
                                 break;
 
                             case ConsoleKey.RightArrow:
                                 while (sn.Move(1, 0, f.pos)) f = new Food();
+                                xs.Serialize(points, sn.body[0]);
+                                xs.Serialize(foodLocation, f.pos);
                                 break;
 
                             case ConsoleKey.Escape:
+                                foodLocation.Close();
+                                points.Close();
                                 return;
 
                         }
-
 
                 }
             }
             catch (Exception)
             {
+                foodLocation.Close();
+                points.Close();
+
+              /*  FileStream dsPoints = new FileStream("point.txt", FileMode.Open, FileAccess.Read);
+                FileStream dsFood = new FileStream("foodLocation.txt", FileMode.Open, FileAccess.Read);
+                Point dsPoint = xs.Deserialize(dsPoints) as Point;
+                dsPoints.Close();
+                points.Close();
+
+                Point dsFoodLoc = xs.Deserialize(dsFood) as Point;
+                dsFood.Close();
+                foodLocation.Close();*/
+
                 Console.Clear();
                 Console.WriteLine("You lost!");
                 Console.WriteLine();
