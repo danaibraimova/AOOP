@@ -68,18 +68,6 @@ namespace змейка2
                 body[i].x = body[i - 1].x;
                 body[i].y = body[i - 1].y;
             } //чтобы остальные части тела двигались за головой
-            
-            Point p = body[1];
-            while(p != body[body.Count - 1])
-            {
-                
-                if(head.x==p.x && head.y==p.y)
-                {
-                    throw new Exception();
-                }
-                p.x++;
-                p.y++;
-            }
 
             head.x += dx;
             head.y += dy;
@@ -95,8 +83,7 @@ namespace змейка2
         public Point pos=new Point(0,0);
         public Food()
         {
-            Draw();
-            
+            Draw();            
         }
 
         public void Draw()
@@ -109,8 +96,7 @@ namespace змейка2
         }
     }
     class Program
-    {
-       
+    {     
         static void Main(string[] args)
         {
             Console.SetWindowSize(60,40);
@@ -125,30 +111,43 @@ namespace змейка2
 
                     ConsoleKeyInfo pressedKey = Console.ReadKey();
 
-
-                    switch (pressedKey.Key)
+                    if(sn.body[0].x==59 || sn.body[0].y==39)
                     {
-
-                        case ConsoleKey.UpArrow:
-                            while (sn.Move(0, -1, f.pos)) f = new Food();
-                            break;
-
-                        case ConsoleKey.DownArrow:
-                            while (sn.Move(0, 1, f.pos)) f = new Food();
-                            break;
-
-                        case ConsoleKey.LeftArrow:
-                            while (sn.Move(-1, 0, f.pos)) f = new Food();
-                            break;
-
-                        case ConsoleKey.RightArrow:
-                            while (sn.Move(1, 0, f.pos)) f = new Food();
-                            break;
-
-                        case ConsoleKey.Escape:
-                            break;
-
+                        throw new Exception();
                     }
+
+
+                    for (int i = 1; i < sn.body.Count;i++ )
+                    {
+                        if (sn.body[0].x == sn.body[i].x && sn.body[0].y == sn.body[i].y)
+                        {
+                            throw new Exception();
+                        }
+                    }
+
+                        switch (pressedKey.Key)
+                        {
+
+                            case ConsoleKey.UpArrow:
+                                while (sn.Move(0, -1, f.pos)) f = new Food();
+                                break;
+
+                            case ConsoleKey.DownArrow:
+                                while (sn.Move(0, 1, f.pos)) f = new Food();
+                                break;
+
+                            case ConsoleKey.LeftArrow:
+                                while (sn.Move(-1, 0, f.pos)) f = new Food();
+                                break;
+
+                            case ConsoleKey.RightArrow:
+                                while (sn.Move(1, 0, f.pos)) f = new Food();
+                                break;
+
+                            case ConsoleKey.Escape:
+                                return;
+
+                        }
 
 
                 }
@@ -158,8 +157,8 @@ namespace змейка2
                 Console.Clear();
                 Console.WriteLine("You lost!");
                 Console.WriteLine();
-                Console.WriteLine("or something went wrong. game over anyway");
-                Console.WriteLine("pushing to git");
+                Console.WriteLine("or something went wrong");
+                Console.WriteLine("game over anyway");
                 Console.ReadKey();
             }
       
