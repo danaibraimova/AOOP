@@ -44,7 +44,6 @@ namespace Example1.Models
                 Game.food.body[0].y = new Random().Next(0, 48);
                 Game.score++;
 
-
             }
 
             for (int i = 0; i < Game.wall.body.Count; i++)
