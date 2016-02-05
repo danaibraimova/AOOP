@@ -18,8 +18,8 @@ namespace Example1
             {
                 while (Game.isActive)
                 {
+                                  
                     Game.Draw();
-
                     ConsoleKeyInfo pressedKey = Console.ReadKey();
 
                     switch (pressedKey.Key)
@@ -48,10 +48,10 @@ namespace Example1
                     }
                 }
             }
-            catch(Exception)
+            catch(Exception e)
             {
                 Console.Clear();
-                Console.WriteLine("Game over!");
+                Console.WriteLine(e.Message);
 
                 Console.ReadKey();
             }

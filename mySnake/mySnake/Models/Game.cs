@@ -18,25 +18,26 @@ namespace Example1.Models
 
         public static void Init()
         {
+           
             Console.SetWindowSize(48, 48);
             isActive = true;
-            score = 0;
+         //   score = 0;
             curLevel = 1;
             snake.body.Add(new Point { x = 10, y = 10 });
             food.body.Add(new Point
             {
                 x = new Random().Next(0, 48),
-                y = new Random().Next(3, 48)
+                y = new Random().Next(4, 48)
             });
+
+
+
         }
 
         public static void LoadLevel()
         {
-           
-            if(snake.body.Count==5)
-            {
-                curLevel++;
-            }
+            score = 0;
+                     
             FileStream fs = new FileStream(string.Format(@"Levels/MapLevel{0}.txt", curLevel), 
                 FileMode.Open, FileAccess.Read);
 
@@ -78,11 +79,13 @@ namespace Example1.Models
 
         public static void Draw()
         {
+           
             Console.Clear();
             Info.showInfo();
             snake.Draw();
             food.Draw();
             wall.Draw();
+           
         }
     }
 }
