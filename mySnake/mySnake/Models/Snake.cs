@@ -62,15 +62,16 @@ namespace Example1.Models
                     || Game.snake.body[0].y == 2
                     )
                 {
-                    throw new Exception("Game over");
+                    throw new Exception("Game over!");
                 }
 
             }
             
             if(Game.score%3==0 && Game.score>=3)
             {
+              // Console.Clear();
                 Game.curLevel++;               
-                Console.Clear();
+                
                 Game.LoadLevel();
                 Game.Draw();
             }
