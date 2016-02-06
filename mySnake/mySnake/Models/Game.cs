@@ -36,7 +36,7 @@ namespace Example1.Models
 
         public static void LoadLevel()
         {
-            Console.Clear();
+         
             score = 0;
                      
             FileStream fs = new FileStream(string.Format(@"Levels/MapLevel{0}.txt", curLevel), 
@@ -79,8 +79,7 @@ namespace Example1.Models
         }
 
         public static void Draw()
-        {
-           
+        {           
             Console.Clear();
             Info.showInfo();
             snake.Draw();

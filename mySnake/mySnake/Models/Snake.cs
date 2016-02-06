@@ -69,7 +69,8 @@ namespace Example1.Models
             
             if(Game.score%3==0 && Game.score>=3)
             {
-              // Console.Clear();
+               
+                Console.Clear();
                 Game.curLevel++;               
                 
                 Game.LoadLevel();
